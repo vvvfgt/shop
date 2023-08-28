@@ -1,18 +1,23 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="container">
+      <MainContainer>
+        <h1>Home Page</h1>
+      </MainContainer>
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import MainContainer from "@/components/MainContainer";
 
 export default {
   name: 'HomeView',
   components: {
-    HelloWorld
+    // eslint-disable-next-line vue/no-unused-components
+    MainContainer,
   }
+
 }
 </script>
