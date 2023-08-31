@@ -22,18 +22,13 @@
 </template>
 
 <script>
+import {menuList} from '@/constants/menuLinks'
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Header',
   data() {
     return {
-      headerMenuList: [
-        { name: 'Home', path: '/'},
-        { name: 'About Us', path: '/about'},
-        { name: 'Property', path: '/property'},
-        { name: 'Our Blog', path: '/blog'},
-        { name: 'Contacts', path: '/contacts'},
-      ]
+      headerMenuList: menuList
     }
   }
 }

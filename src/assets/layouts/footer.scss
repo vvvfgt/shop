@@ -1,0 +1,42 @@
+@import './colors.scss';
+.footer {
+  color: #fff;
+  padding: 75px 0;
+  &_bg {
+    background-color: $footer;
+  }
+  &__logo {
+    padding-bottom: 15px;
+  }
+  &__socials {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+  }
+  &__social {
+    margin-right: 20px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  &__link {
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+    &:hover {
+      font-weight: bold;
+    }
+  }
+  &__title {
+    font-size: 28px;
+    padding-bottom: 21px;
+  }
+  &__list {
+    list-style: none;
+    p {
+      margin: 0;
+      font-size: 12px;
+    }
+  }
+}
