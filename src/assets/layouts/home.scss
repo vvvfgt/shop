@@ -1,0 +1,8 @@
+@import './colors.scss';
+.home {
+  &__offering {
+    font-size: 37px;
+    color: $black;
+    text-align: right;
+  }
+}

@@ -1,7 +1,7 @@
 export const menuList = [
     { name: 'Home', path: '/'},
     { name: 'About Us', path: '/about'},
-    { name: 'Property', path: '/property'},
+    { name: 'Products', path: '/products'},
     { name: 'Our Blog', path: '/blog'},
     { name: 'Contacts', path: '/contacts'},
 ]

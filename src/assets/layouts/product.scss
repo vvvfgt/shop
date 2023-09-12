@@ -1,0 +1,47 @@
+@import "colors";
+.active_group {
+  text-align: center;
+  padding: 5px;
+  color: $text-title;
+}
+.product {
+  &__caption {
+    text-align: center;
+    padding-bottom: 15px;
+    color: $text_title;
+    font-weight: bold;
+  }
+  &__image {
+    height: 200px;
+    padding: 10px;
+  }
+  &__price {
+    text-align: center;
+    padding-top: 5px;
+    color: $red;
+    font-weight: bold;
+  }
+  &__title {
+    font-size: 12px;
+    color: $text_title;
+  }
+}
+.cart {
+  &__caption {
+    text-align: center;
+    a {
+      text-decoration: none;
+      color: $text_title;
+    }
+  }
+  &__total {
+    color: $red;
+  }
+  &__confirm {
+    padding-bottom: 10px;
+  }
+}
+
+
+
+

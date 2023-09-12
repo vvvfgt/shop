@@ -1,0 +1,17 @@
+@import "./colors";
+.feature {
+  background-color: $grey_light;
+  padding: 100px;
+  text-align: center;
+  &__title,
+  &__icon {
+    padding-bottom: 25px;
+  }
+  &__title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  &__p {
+    font-size: 14px;
+  }
+}

@@ -1,5 +1,8 @@
-@import './colors.scss';
-@import './footer.scss';
+@import './colors';
+@import './footer';
+@import './home';
+@import './feature';
+@import './product';
 body {
   color: $primary;
   font-family: Avenir, Helvetica, Arial, sans-serif;
