@@ -21,11 +21,6 @@ const routes = [
         name: 'blog',
         component: () => import('@/views/BlogView.vue')
     },
-    {
-        path: '/contacts',
-        name: 'contacts',
-        component: () => import('@/views/ContactsView.vue')
-    },
 ]
 
 const router = createRouter({

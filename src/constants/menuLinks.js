@@ -3,7 +3,6 @@ export const menuList = [
     { name: 'About Us', path: '/about'},
     { name: 'Products', path: '/products'},
     { name: 'Our Blog', path: '/blog'},
-    { name: 'Contacts', path: '/contacts'},
 ]
 
 export const menuClient = [

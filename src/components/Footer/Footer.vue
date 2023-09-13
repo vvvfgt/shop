@@ -17,15 +17,13 @@
          <h3 class="footer__title">Contact us</h3>
          <ul class="footer__list">
            <li>
-             <p>240 Central Park, London</p>
+             <p>{{this.address['city']}}</p>
            </li>
            <li>
-             <p>Phone 059603429</p>
-             <p>Telegram 059603429</p>
-             <p>Skype 059603429</p>
-           </li>
-           <li>
-             <p><a class="footer__link">mail</a></p>
+             <p>Phone: {{this.address['phone']}}</p>
+             <p>Telegram: {{this.address['telegram']}}</p>
+             <p>Skype: {{this.address['skype']}}</p>
+             <p>Mail: {{this.address['mail']}}</p>
            </li>
          </ul>
        </div>
@@ -41,17 +39,31 @@ import FooterMenu from "@/components/Footer/FooterMenu";
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Footer",
+  created() {
+    this.getAddress();
+  },
   data() {
     return {
       footerMenu: menuList,
       footerMenuClient: menuClient,
       capNavigation: 'Navigation',
       capClient: "For clients",
+      address: [],
+      baseUrl: 'http://bot/api',
     }
   },
   components: {
     FooterMenu,
     FooterIcons,
+  },
+  methods: {
+    getAddress() {
+      this.axios.get(`${this.baseUrl}/address`)
+          .then(res => {
+            console.log(res)
+            this.address = res.data;
+          })
+    }
   }
 }
 </script>

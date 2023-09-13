@@ -17,6 +17,16 @@
 
     <div class="row">
       <div class="col-md-2">
+
+        <div class="d-grid">
+          <button @click="getRandomProducts()" type="button" class="btn btn-outline-dark btn-sm">
+            Randomize
+          </button>
+          <button @click="getGroupProducts(this.activeGroup)" type="button" class="btn btn-outline-dark btn-sm">
+            All Products
+          </button>
+        </div>
+
         <nav class="sidebar-sticky navbar-expand-md">
             <ul class="navbar-nav mr-auto flex-column">
               <li class="nav-item" v-for="(item, index) in categoryMenu" :key="index">
@@ -25,7 +35,8 @@
             </ul>
         </nav>
       </div>
-      <div class="col-md-8 product">
+
+      <div class="col-md-7 product">
         <h5 class="product__caption">{{ this.titleCategory }}</h5>
         <div class="row">
           <div class="col-md-4 card" v-for="(product, index) in products" :key="index">
@@ -37,7 +48,7 @@
         </div>
       </div>
 
-      <div class="col-md-2 cart">
+      <div class="col-md-3 cart">
         <h5 class="cart__caption">
           <a href="#" @click="getCartProducts()">Корзина</a>
         </h5>
@@ -48,6 +59,9 @@
               <th>Товар</th>
               <th>Кол</th>
               <th>Цена</th>
+              <th>+</th>
+              <th>-</th>
+              <th>x</th>
             </tr>
           </thead>
           <tbody>
@@ -57,11 +71,24 @@
               </td>
               <td>
                 {{product.qty}}
-                <span class="badge rounded-pill bg-primary">+</span>
-                <span class="badge bg-danger">-</span>
               </td>
               <td>
                 {{product.price}}
+              </td>
+              <td>
+                <a href="#" @click="this.plusQty(product)">
+                  <span class="badge rounded-pill bg-primary">+</span>
+                </a>
+              </td>
+              <td>
+                <a href="#" @click="this.minusQty(product)">
+                  <span class="badge rounded-pill bg-success">-</span>
+                </a>
+              </td>
+              <td>
+                <a href="#" @click="this.deleteFromCart(product.id)">
+                  <span class="badge rounded-pill bg-danger">x</span>
+                </a>
               </td>
             </tr>
           </tbody>
@@ -127,6 +154,7 @@ export default {
             this.categoryMenu = res.data[0]
           })
       this.activeTitleGroup = groupTitle
+      this.activeGroup = groupId
     },
     getRandomProducts() {
       this.axios.get(`${this.baseUrl}/random-products`)
@@ -141,6 +169,14 @@ export default {
             this.products = res.data[0]
           })
       this.titleCategory = categoryTitle
+    },
+    getGroupProducts(groupId) {
+      this.axios.get(`${this.baseUrl}/group-products/${groupId}`)
+          .then(res => {
+            console.log(res)
+            this.products = res.data
+          })
+      this.titleCategory = 'All Group Products'
     },
     addToCart(product) {
 
@@ -184,7 +220,28 @@ export default {
     clearCart() {
       this.cartProducts = this.cartProducts.splice(0, this.cartProducts.length);
       localStorage.removeItem('cart');
-    }
+    },
+    updateCart() {
+      localStorage.setItem('cart', JSON.stringify(this.cartProducts))
+    },
+    plusQty(product) {
+      product.qty++;
+      this.updateCart();
+    },
+    minusQty(product) {
+      if (product.qty > 1) {
+        product.qty--
+      } else {
+        this.deleteFromCart(product.id)
+      }
+      this.updateCart()
+    },
+    deleteFromCart(id) {
+      this.cartProducts = this.cartProducts.filter(product => {
+        return product.id !== id
+      })
+      this.updateCart()
+    },
   },
   computed: {
     totalPrice() {
